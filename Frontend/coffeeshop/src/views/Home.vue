@@ -15,19 +15,13 @@ export default {
   },
   data() {
     return {
-      items: [
-        {
-          id: 1,
-          title: 'Long white',
-          description: 'Nice white'
-        },
-        {
-          id: 2,
-          title: 'Cappcaino',
-          description: 'Nice one'
-        }
-      ]
+      items: []
     }
+  },
+  created() {
+    this.$axios.get(this.$coffeeAPIUrl)
+                .then(result => this.items = result.data.coffee)
+                .catch(err => console.log(err));
   }
 }
 </script>

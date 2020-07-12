@@ -1,28 +1,33 @@
-var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const mongo = require('./config/mongo');
+const cors = require('cors')
+
+const coffeeRouter = require('./routes/coffee.js');
 
 var app = express();
 
-
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/coffee', coffeeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  res.sendStatus(403);
 });
+
+//catch database connection
+mongo.once('open',function(){
+  console.log("Database connected successfully.");
+});
+
 
 // error handler
 app.use(function(err, req, res, next) {
