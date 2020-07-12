@@ -18,12 +18,22 @@ export default {
       items: [
         {
           id: 1,
-          title: 'Long white',
+          title: 'Flat white',
           description: 'Nice white'
         },
         {
           id: 2,
           title: 'Cappcaino',
+          description: 'Nice one'
+        },
+        {
+          id: 3,
+          title: 'Black',
+          description: 'Nice one'
+        },
+        {
+          id: 4,
+          title: 'Latte',
           description: 'Nice one'
         }
       ]
