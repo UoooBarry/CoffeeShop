@@ -27,4 +27,13 @@ router.post('/create', (req,res,next) => {
     ).catch(() => res.sendStatus(403));
 })
 
+router.get('/:id', (req,res) => {
+    Coffee.findById(req.params.id)
+            .exec()
+            .then(
+                coffee => res.json(coffee)
+            )
+            .catch( ()=> res.sendStatus(403));
+})
+
 module.exports = router;
