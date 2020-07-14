@@ -5,7 +5,8 @@ var logger = require('morgan');
 const mongo = require('./config/mongo');
 const cors = require('cors')
 
-const coffeeRouter = require('./routes/coffee.js');
+const coffeeRouter = require('./routes/coffee');
+const orderRouter = require('./routes/orders');
 
 var app = express();
 
@@ -17,10 +18,11 @@ app.use(cookieParser());
 
 
 app.use('/api/coffee', coffeeRouter);
+app.use('/api/order', orderRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  res.sendStatus(403);
+  res.sendStatus(404);
 });
 
 //catch database connection
@@ -37,7 +39,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json(err);
 });
 
 module.exports = app;
