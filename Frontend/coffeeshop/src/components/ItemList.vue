@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <div v-for='item in items' v-bind:key="item.id">
+            <div v-for='item in items' v-bind:key="item._id">
                 <div class="col-sm">
                     <item v-bind:coffee="item" />
                 </div>  

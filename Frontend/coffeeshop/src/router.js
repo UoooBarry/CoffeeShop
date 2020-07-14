@@ -15,6 +15,13 @@ export default new VueRouter({
           path: '/about',
           name: 'about',
           component: () => import('./views/About.vue')
+      },
+      {
+          path:
+          '/item/:id', 
+          name: 'ItemDisplay',
+          component: () => import('./views/Item.vue'),
+          props: true
       }
     ]
   })
