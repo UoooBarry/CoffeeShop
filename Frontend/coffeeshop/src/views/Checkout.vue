@@ -1,6 +1,5 @@
 <template>
   <div class="checkout">
-    <h1>This is a checkout page</h1>
     <Checkout />
   </div>
 </template>

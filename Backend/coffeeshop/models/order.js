@@ -4,6 +4,10 @@ const order = mongoose.Schema({
     items: {
         type: [mongoose.ObjectId]
     },
+    name: {
+        type: String,
+        required: true
+    },
     created_at: {
         type: Date,
         default: new Date()

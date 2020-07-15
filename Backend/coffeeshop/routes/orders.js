@@ -14,10 +14,12 @@ router.get('/',(req,res) => {
 });
 
 router.post('/create', [
+    check('name').not().isEmpty().withMessage('Name cannot be empty'),
     check('items').not().isEmpty().withMessage('Cannot order no items'),
     check('delivery').not().isEmpty().withMessage('Must select a delivery method'),
     check('contact').isLength({min:10, max:10}).withMessage('Contact number should be 10 digits').matches(/^[0][0-9]*$/).withMessage('Contact must be numbers start with 0'),
 ] ,async (req,res) => {
+    const name = req.body.name;
     const items = req.body.items;
     const delivery = req.body.delivery;
     const address = req.body.address;
@@ -29,7 +31,9 @@ router.post('/create', [
         errs.array().forEach(
             err => errors.push(err.msg)
         )
-        res.json(errors);
+        res.json({
+            message: "fail",
+            errors});
         
         return;
     }
@@ -37,6 +41,7 @@ router.post('/create', [
     const price = await calculateTotal(items);
 
     Order.create({
+        name: name,
         items: items,
         delivery: delivery,
         contact: contact,
@@ -46,8 +51,7 @@ router.post('/create', [
         .then(
             () => {
                 res.json({
-                    message: "success",
-                    total: price
+                    message: "success"
                 })
             }
         )

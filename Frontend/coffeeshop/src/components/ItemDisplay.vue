@@ -44,14 +44,16 @@ export default {
     },
     methods: {
         order() {
-            this.delivery = (this.delivery === "delivery") ? true : false;
+            //this.delivery = (this.delivery === "delivery") ? true : false;
 
             const order = {
                 id: this.item._id,
-                delivery: this.delivery
+                title: this.item.title,
+                delivery: this.delivery,
+                price: this.item.price
             }
 
-            this.$session.set('cart', order);
+            this.$session.set('order', order);
             this.$router.push({name: 'Checkout'});
         }
     }

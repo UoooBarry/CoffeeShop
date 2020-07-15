@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header />
+    <FlashMessage></FlashMessage>
     <router-view/>
   </div>
 </template>
