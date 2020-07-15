@@ -22,6 +22,12 @@ export default new VueRouter({
           name: 'ItemDisplay',
           component: () => import('./views/Item.vue'),
           props: true
-      }
+      },
+    {
+      path: '/checkout',
+      name: 'Checkout',
+      component: ()=> import('./views/Checkout.vue')
+    }
+
     ]
   })

@@ -1,3 +1,4 @@
-const coffeeAPIUrl = "http://192.168.0.3:3000/api/coffee";
+const coffeeAPIUrl = "http://localhost:3000/api/coffee";
+const orderAPIUrl = "http://localhost:3000/api/order";
 
-export {coffeeAPIUrl};
+export {coffeeAPIUrl, orderAPIUrl};
