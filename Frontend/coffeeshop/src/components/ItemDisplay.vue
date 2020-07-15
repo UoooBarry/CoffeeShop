@@ -17,7 +17,7 @@
                             <option value="delivery">Delivery</option>
                             <option value="order">Order</option>
                         </select>
-                        <button class="btn-add_to_cart">Place my order</button>
+                        <router-link to="/checkout" class="btn-add_to_cart">Place my order</router-link>
                     </div>
                 </div>
             </div>           
