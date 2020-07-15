@@ -12,12 +12,14 @@
                         <span class="pair left">Price: </span>
                         <span class="pair">{{ item.price }}</span>
                         <hr>
-                        <span class="pair left">Order way: </span>
-                        <select class="form-control">
-                            <option value="delivery">Delivery</option>
-                            <option value="order">Order</option>
-                        </select>
-                        <button class="btn-add_to_cart">Place my order</button>
+                        <form @submit.prevent="order">
+                            <span class="pair left">Order way: </span>
+                            <select class="form-control" name="delivery" v-model="delivery">
+                                <option value="delivery">Delivery</option>
+                                <option value="order">Order</option>
+                            </select>
+                            <input type="submit" class="btn-add_to_cart" value="Place my order" />
+                        </form>
                     </div>
                 </div>
             </div>           
@@ -31,13 +33,27 @@ export default {
     props: ['id'],
     data() {
         return{
-            item: []
+            item: [],
+            delivery: 'delivery'
         }
     },
     created() {
         this.$axios.get(`${this.$coffeeAPIUrl}/${ this.$route.params.id}`)
                     .then(result => this.item = result.data)
                     .catch(err => console.log(err));
+    },
+    methods: {
+        order() {
+            this.delivery = (this.delivery === "delivery") ? true : false;
+
+            const order = {
+                id: this.item._id,
+                delivery: this.delivery
+            }
+
+            this.$session.set('cart', order);
+            this.$router.push({name: 'Checkout'});
+        }
     }
 }
 </script>

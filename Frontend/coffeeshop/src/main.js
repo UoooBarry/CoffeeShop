@@ -1,7 +1,8 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import 'bootstrap'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import 'bootstrap';
+import VueSession from 'vue-session';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import {coffeeAPIUrl} from './config/variables';
@@ -16,3 +17,5 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
+
+Vue.use(VueSession);
